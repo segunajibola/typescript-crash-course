@@ -89,7 +89,7 @@ function addNum(x: number, y: number): number {
 
 // Void
 function log(message: string | number): void {
-  // parameters can be string or number, the return is not specified so it's void.
+  // parameters can be string or number, the return is not specified so it's void. it returns nothing
   console.log(`The message is ${message}`);
 }
 
