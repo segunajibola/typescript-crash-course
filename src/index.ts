@@ -22,7 +22,8 @@ person2 = [
 let pid: string | number; // can be string or number
 pid = "22";
 
-// Enum
+// Enum - allows us to define a set of named constant, numeric or string
+
 enum Direction {
   Up,
   Down,
@@ -49,6 +50,26 @@ enum Direction2 {
 }
 
 // console.log(Direction2.Up, Direction2.Left); // output = one, three
+
+const ADMIN = 'admin'
+const READ_ONLY = 'read-only'
+
+
+enum Permissions1 {
+    ADMIN,
+    READ_ONLY
+}
+
+// Research Permissions without 1 - is it a keyword
+
+const you = {
+    firstName: 'Bobby',
+    lastName: 'Brown',
+    permissions: Permissions1.ADMIN,
+    isReturning: true,
+    age: 35,
+    stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
+}
 
 // Objects
 
@@ -197,3 +218,137 @@ let strArray = getArray<string>(["hello", "world"]); // we can only pass string
 strArray.push("2");
 
 // console.log(strArray) // output = [ 'hello', 'world', '2' ]
+
+
+// SCRIMBA
+
+function addFunc(firstValue : (number | string), secondValue: (number | string)) {
+  let result
+  if (typeof firstValue === 'number' && typeof secondValue === 'number') {
+      result = firstValue + secondValue
+  }
+  if (typeof firstValue === 'string' && typeof secondValue === 'string') {
+      result = firstValue + ' ' + secondValue
+  }
+  if (typeof firstValue === 'number' && typeof secondValue === 'string') {
+      console.log('cannot perform this addition')
+  }
+  if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+      console.log('cannot perform this addition')
+  }
+}
+
+const combinedReviews = addFunc(5,1)
+const firstNameLastName = addFunc('Ania', 'Kubow')
+
+
+// Any type
+
+// Reviews
+const reviews : (
+  {
+  name: string;
+  stars: number;
+  loyaltyUser: string;
+  date: string;   
+} |
+{
+  name: string;
+  stars: number;
+  loyaltyUser: string;
+  date: string;
+  description: string;
+}
+)[]= [
+  {
+      name: 'Sheia',
+      stars: 5,
+      loyaltyUser: "GOLD_USER",
+      date: '01-04-2021'
+  },
+  {
+      name: 'Andrzej',
+      stars: 3,
+      loyaltyUser: "BRONZE_USER",
+      date: '28-03-2021'
+  },
+  {
+      name: 'Omar',
+      stars: 4,
+      loyaltyUser: "SILVER_USER",
+      date: '27-03-2021',
+      description: 'Great hosts, location was a bit further than said',
+  },
+]
+
+// Alias type
+type Price = 45 | 30 | 25
+type Country = 'Colombia' | 'Poland' | 'United Kingdom'
+
+// Array of Properties
+const properties : {
+    image: string;
+    title: string;
+    price: Price;
+    location: {
+        firstLine: string;
+        city: string;
+        code: number;
+        country: Country;
+    };
+    contact: [ number, string ];
+    isAvailable: boolean;
+}[] = [
+    {
+        image: 'images/colombia-property.jpg',
+        title: 'Colombian Shack',
+        price: 45,
+        location: {
+            firstLine: 'shack 37',
+            city: 'Bogota',
+            code: 45632,
+            country: 'Colombia'
+        },
+        contact: [+112343823978921, 'marywinkle@gmail.com'],
+        isAvailable: true  
+    },
+    {
+        image: 'images/poland-property.jpg',
+        title: 'Polish Cottage',
+        price: 30,
+        location: {
+            firstLine: 'no 23',
+            city: 'Gdansk',
+            code: 343903,
+            country: 'Poland'
+        },
+        contact: [+1298239028490830, 'garydavis@hotmail.com'],
+        isAvailable: false 
+    },
+    {
+        image: 'images/london-property.jpg',
+        title: 'London Flat',
+        price: 25,
+        location: {
+            firstLine: 'flat 15',
+            city: 'London',
+            code: 35433,
+            country: 'United Kingdom',
+        },
+        contact: [+34829374892553, 'andyluger@aol.com'],
+        isAvailable: true
+    }
+]
+
+// Function type
+function addSome( firstValue: number, secondValue: number ) : number {
+  return firstValue + secondValue
+}
+
+// As the function return type is undefined, it should return undefined
+
+// export function showReviewTotal(value: number, reviewer: string, isLoyalty: LoyaltyUser) : undefined {
+//   const iconDisplay = LoyaltyUser.GOLD_USER ? '⭐' : ''
+//   reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
+//   return undefined
+// }
